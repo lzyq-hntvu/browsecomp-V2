@@ -1,0 +1,345 @@
+{
+  "description": "约束映射规则的测试用例集",
+  "version": "1.0",
+  "total_test_cases": 30,
+  "test_cases": [
+    {
+      "test_id": "T01",
+      "constraint_text": "published before 2010",
+      "expected_rule_id": "C01",
+      "expected_action": "filter_current_node",
+      "expected_target_node": null,
+      "expected_edge_type": null,
+      "rationale": "时间约束，在Paper节点上过滤publication_year"
+    },
+    {
+      "test_id": "T02",
+      "constraint_text": "authored by five individuals",
+      "expected_rule_id": "C02",
+      "expected_action": "traverse_and_count",
+      "expected_target_node": "Author",
+      "expected_edge_type": "HAS_AUTHOR",
+      "rationale": "作者数量约束，需要遍历HAS_AUTHOR边并计数"
+    },
+    {
+      "test_id": "T03",
+      "constraint_text": "affiliated with Stanford University",
+      "expected_rule_id": "C03",
+      "expected_action": "traverse_edge",
+      "expected_target_node": "Institution",
+      "expected_edge_type": "AFFILIATED_WITH",
+      "rationale": "机构隶属，从Author跳转到Institution"
+    },
+    {
+      "test_id": "T04",
+      "constraint_text": "Ph.D. from University of Toronto",
+      "expected_rule_id": "C04",
+      "expected_action": "traverse_edge",
+      "expected_target_node": "Institution",
+      "expected_edge_type": "AFFILIATED_WITH",
+      "rationale": "学位获取，使用AFFILIATED_WITH边的education属性"
+    },
+    {
+      "test_id": "T05",
+      "constraint_text": "published in Nature journal",
+      "expected_rule_id": "C05",
+      "expected_action": "traverse_edge",
+      "expected_target_node": "Venue",
+      "expected_edge_type": "PUBLISHED_IN",
+      "rationale": "发表载体，从Paper跳转到Venue"
+    },
+    {
+      "test_id": "T06",
+      "constraint_text": "university founded between 1955 and 1960",
+      "expected_rule_id": "C06",
+      "expected_action": "filter_current_node",
+      "expected_target_node": null,
+      "expected_edge_type": null,
+      "rationale": "机构成立时间，在Institution节点上过滤founded_year"
+    },
+    {
+      "test_id": "T07",
+      "constraint_text": "awarded the Rollo Davidson Prize",
+      "expected_rule_id": "C07",
+      "expected_action": "traverse_edge",
+      "expected_target_node": "Entity",
+      "expected_edge_type": "MENTIONS",
+      "rationale": "奖项荣誉，跳转到Entity节点(type=award)"
+    },
+    {
+      "test_id": "T08",
+      "constraint_text": "cites a paper published in 1994",
+      "expected_rule_id": "C08",
+      "expected_action": "traverse_edge",
+      "expected_target_node": "Paper",
+      "expected_edge_type": "CITES",
+      "rationale": "引用关系，从Paper跳转到另一个Paper"
+    },
+    {
+      "test_id": "T09",
+      "constraint_text": "co-authored with Person B in 1994",
+      "expected_rule_id": "C09",
+      "expected_action": "traverse_edge",
+      "expected_target_node": "Author",
+      "expected_edge_type": "HAS_AUTHOR",
+      "rationale": "合作关系，需要找共同作者"
+    },
+    {
+      "test_id": "T10",
+      "constraint_text": "paper discusses international relations",
+      "expected_rule_id": "C10",
+      "expected_action": "traverse_edge",
+      "expected_target_node": "Entity",
+      "expected_edge_type": "MENTIONS",
+      "rationale": "研究主题，跳转到Entity节点(type=research_topic)"
+    },
+    {
+      "test_id": "T11",
+      "constraint_text": "uses a specific regression model",
+      "expected_rule_id": "C11",
+      "expected_action": "traverse_edge",
+      "expected_target_node": "Entity",
+      "expected_edge_type": "MENTIONS",
+      "rationale": "方法学技术，跳转到Entity节点(type=method)"
+    },
+    {
+      "test_id": "T12",
+      "constraint_text": "sample size between 150 and 400",
+      "expected_rule_id": "C12",
+      "expected_action": "traverse_edge",
+      "expected_target_node": "Entity",
+      "expected_edge_type": "MENTIONS",
+      "rationale": "数据样本，跳转到Entity节点(type=data)"
+    },
+    {
+      "test_id": "T13",
+      "constraint_text": "title ends with the word 'problems'",
+      "expected_rule_id": "C13",
+      "expected_action": "filter_current_node",
+      "expected_target_node": null,
+      "expected_edge_type": null,
+      "rationale": "论文结构属性，在Paper节点上过滤title"
+    },
+    {
+      "test_id": "T14",
+      "constraint_text": "thanked in acknowledgments section",
+      "expected_rule_id": "C14",
+      "expected_action": "traverse_edge",
+      "expected_target_node": "Entity",
+      "expected_edge_type": "MENTIONS",
+      "rationale": "致谢内容，跳转到Entity节点(type=acknowledged_person)"
+    },
+    {
+      "test_id": "T15",
+      "constraint_text": "funded by NSF grant",
+      "expected_rule_id": "C15",
+      "expected_action": "traverse_edge",
+      "expected_target_node": "Entity",
+      "expected_edge_type": "MENTIONS",
+      "rationale": "资助信息，跳转到Entity节点(type=funding)"
+    },
+    {
+      "test_id": "T16",
+      "constraint_text": "speaker at 2019 medical conference",
+      "expected_rule_id": "C16",
+      "expected_action": "traverse_edge",
+      "expected_target_node": "Entity",
+      "expected_edge_type": "MENTIONS",
+      "rationale": "会议演讲事件，跳转到Entity节点(type=event)"
+    },
+    {
+      "test_id": "T17",
+      "constraint_text": "Associate Professor at MIT",
+      "expected_rule_id": "C17",
+      "expected_action": "filter_current_node",
+      "expected_target_node": null,
+      "expected_edge_type": null,
+      "rationale": "专业职位头衔，在Author节点上过滤position"
+    },
+    {
+      "test_id": "T18",
+      "constraint_text": "born between 1933 and 1935",
+      "expected_rule_id": "C18",
+      "expected_action": "filter_current_node",
+      "expected_target_node": null,
+      "expected_edge_type": null,
+      "rationale": "出生日期，在Author节点上过滤birth_year"
+    },
+    {
+      "test_id": "T19",
+      "constraint_text": "title includes the word 'Intervention'",
+      "expected_rule_id": "C19",
+      "expected_action": "filter_current_node",
+      "expected_target_node": null,
+      "expected_edge_type": null,
+      "rationale": "论文标题格式，在Paper节点上过滤title"
+    },
+    {
+      "test_id": "T20",
+      "constraint_text": "mentions a specific drug compound",
+      "expected_rule_id": "C20",
+      "expected_action": "traverse_edge",
+      "expected_target_node": "Entity",
+      "expected_edge_type": "MENTIONS",
+      "rationale": "技术实体，跳转到Entity节点(type=chemical_entity)"
+    },
+    {
+      "test_id": "T21",
+      "constraint_text": "university located in California",
+      "expected_rule_id": "C21",
+      "expected_action": "filter_current_node",
+      "expected_target_node": null,
+      "expected_edge_type": null,
+      "rationale": "地理位置，在Institution节点上过滤location"
+    },
+    {
+      "test_id": "T22",
+      "constraint_text": "first author of the paper",
+      "expected_rule_id": "C22",
+      "expected_action": "filter_current_node",
+      "expected_target_node": null,
+      "expected_edge_type": null,
+      "rationale": "作者顺序，在Author节点或HAS_AUTHOR边上过滤author_order"
+    },
+    {
+      "test_id": "T23",
+      "constraint_text": "previously co-authored an article in 1994",
+      "expected_rule_id": "C23",
+      "expected_action": "traverse_edge",
+      "expected_target_node": "Paper",
+      "expected_edge_type": "HAS_AUTHOR",
+      "rationale": "共同发表历史，反向遍历Author->Paper"
+    },
+    {
+      "test_id": "T24",
+      "constraint_text": "editor of a journal focused on teaching",
+      "expected_rule_id": "C24",
+      "expected_action": "filter_current_node",
+      "expected_target_node": null,
+      "expected_edge_type": null,
+      "rationale": "审稿编辑角色，在Author节点上过滤editorial_role"
+    },
+    {
+      "test_id": "T25",
+      "constraint_text": "annealing temperature more than 300°C",
+      "expected_rule_id": "C25",
+      "expected_action": "traverse_edge",
+      "expected_target_node": "Entity",
+      "expected_edge_type": "MENTIONS",
+      "rationale": "特定数值测量值，跳转到Entity节点(type=measurement)"
+    },
+    {
+      "test_id": "T26",
+      "constraint_text": "founded a company between 2015 and 2019",
+      "expected_rule_id": "C26",
+      "expected_action": "traverse_edge",
+      "expected_target_node": "Institution",
+      "expected_edge_type": "AFFILIATED_WITH",
+      "rationale": "公司商业实体，跳转到Institution节点(type=company)"
+    },
+    {
+      "test_id": "T27",
+      "constraint_text": "published in volume 93, issue 2",
+      "expected_rule_id": "C27",
+      "expected_action": "filter_current_node",
+      "expected_target_node": null,
+      "expected_edge_type": null,
+      "rationale": "出版细节，在Paper或Venue节点上过滤publication_details"
+    },
+    {
+      "test_id": "T28",
+      "constraint_text": "name identical to that of a country",
+      "expected_rule_id": "C28",
+      "expected_action": "filter_current_node",
+      "expected_target_node": null,
+      "expected_edge_type": null,
+      "rationale": "人名匹配，在Author节点上过滤name"
+    },
+    {
+      "test_id": "T29",
+      "constraint_text": "supervised by a professor from MIT",
+      "expected_rule_id": "C29",
+      "expected_action": "traverse_edge",
+      "expected_target_node": "Author",
+      "expected_edge_type": "MENTIONS",
+      "rationale": "导师关系，跳转到Author节点(作为导师)"
+    },
+    {
+      "test_id": "T30",
+      "constraint_text": "Department of Management",
+      "expected_rule_id": "C30",
+      "expected_action": "filter_current_node",
+      "expected_target_node": null,
+      "expected_edge_type": null,
+      "rationale": "院系学科，在Institution节点上过滤department"
+    }
+  ],
+  
+  "complex_scenarios": [
+    {
+      "scenario_id": "S01",
+      "description": "Browsecomp #1 完整推理链",
+      "constraints": [
+        "published before 2010",
+        "authored by five individuals",
+        "three from same university",
+        "one name identical to country",
+        "two co-authored in 1994"
+      ],
+      "expected_chain": [
+        {"rule": "C01", "action": "filter_current_node"},
+        {"rule": "C02", "action": "traverse_and_count"},
+        {"rule": "C03", "action": "traverse_edge"},
+        {"rule": "C28", "action": "filter_current_node"},
+        {"rule": "C09", "action": "traverse_edge"}
+      ]
+    },
+    {
+      "scenario_id": "S02",
+      "description": "教育学位 + 机构约束组合",
+      "constraints": [
+        "Ph.D. from University of Toronto between 1995 and 2005",
+        "university founded before 1850"
+      ],
+      "expected_chain": [
+        {"rule": "C04", "action": "traverse_edge", "note": "跳到Institution"},
+        {"rule": "C06", "action": "filter_current_node", "note": "过滤成立年份"}
+      ]
+    },
+    {
+      "scenario_id": "S03",
+      "description": "引用网络 + 作者合作",
+      "constraints": [
+        "cites a paper published in 1998",
+        "that paper's third author",
+        "co-authored with current paper's author"
+      ],
+      "expected_chain": [
+        {"rule": "C08", "action": "traverse_edge", "note": "Paper -> CITES -> Paper"},
+        {"rule": "C22", "action": "filter_current_node", "note": "过滤第三作者"},
+        {"rule": "C09", "action": "traverse_edge", "note": "找共同作者"}
+      ]
+    }
+  ],
+  
+  "edge_cases": [
+    {
+      "case_id": "E01",
+      "description": "双向边: cited_by vs cites",
+      "constraint_text": "cited by over 1000 papers",
+      "note": "需要使用CITES边的incoming方向"
+    },
+    {
+      "case_id": "E02",
+      "description": "虚拟节点处理: Education",
+      "constraint_text": "undergraduate degree at IIT BHU",
+      "note": "不创建EducationNode，使用AFFILIATED_WITH边的edge_filter"
+    },
+    {
+      "case_id": "E03",
+      "description": "Entity子类型: 餐厅",
+      "constraint_text": "restaurant mentioned in acknowledgments",
+      "note": "映射为Entity节点，entity_type='restaurant'"
+    }
+  ]
+}
