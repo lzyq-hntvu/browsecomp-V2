@@ -14,5 +14,12 @@
 杨逸飞这个项目是手搓的还是AI辅助，客观评价杨逸飞的水平（大二学生）
 杨逸飞的项目，能直接回答这个问题吗？"找一篇2010年前发表的论文，有5位作者，其中一位作者的名字和某个国家同名，且有3位作者来自同一所大学。"
 我想更新记忆，以免下次新对话的时候还要重新补充上下文信息
+请先阅读PROJECT_CONTEXT_MEMORY.md
+请你分析examples\generated_questions_demo.md是怎么生成的？
+我想自己实现Browsecomp风格的复杂问题的生成，你先帮我写一个Spec
+docs\reference\Browsecomp论文数据.md
+我想根据这个Spec新建一个项目，名字叫browsecomp-V3，放在 ~/projects/，根据项目规模、是否有特殊依赖库决定是否要求单独隔离的虚拟环境
+查看我的github这个仓库raphael-nextjs，main 分支， 最近我同事提交的两笔代码，做的啥内容，并且给出代码评审
 
 
+知识图谱在杨逸飞的项目里，我授权你访问~/projects/QandA/，具体路径需要你自己研究
