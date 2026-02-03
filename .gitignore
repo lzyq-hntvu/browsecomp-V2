@@ -22,3 +22,10 @@ Thumbs.db
 # Project specific
 *.log
 .cache/
+
+# Internal documents - do not upload to remote
+杨逸飞的需求.md
+杨逸飞项目分析报告.md
+杨逸飞代码水平评估报告.md
+docs/for_developer/README_for_yangfei.md
+docs/for_developer/给胡云舒的项目说明.md

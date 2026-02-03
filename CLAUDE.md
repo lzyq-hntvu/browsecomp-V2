@@ -18,15 +18,17 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ```bash
 # Validate constraint mapping schema
-python tools/validation/schema_validator.py deliverables/constraint_to_graph_mapping.json
+cd tools/validation
+python schema_validator.py ../../deliverables/constraint_to_graph_mapping.json
 
 # Run integration tests (expect 22/30 pass due to known keyword priority conflicts)
-python tools/validation/test_integration.py
+# Note: test_integration.py requires test_cases.json in the same directory
+python test_integration.py
 
 # Quick test of constraint lookup
 python -c "
 import json
-with open('deliverables/constraint_to_graph_mapping.json') as f:
+with open('../deliverables/constraint_to_graph_mapping.json') as f:
     mapping = json.load(f)
 for rule in mapping['constraint_mappings'][:3]:
     print(f\"{rule['constraint_id']}: {rule['constraint_type']}\")
@@ -161,7 +163,8 @@ Edit `deliverables/constraint_to_graph_mapping.json`:
 
 Then validate:
 ```bash
-python tools/validation/schema_validator.py deliverables/constraint_to_graph_mapping.json
+cd tools/validation
+python schema_validator.py ../../deliverables/constraint_to_graph_mapping.json
 ```
 
 ### Understanding the Two-Document System
@@ -176,6 +179,7 @@ These documents are complementary: templates provide the high-level reasoning pa
 - Integration test pass rate: 22/30 (73%)
 - 8 failures are due to keyword priority conflicts (e.g., "paper" matching both Paper and Venue contexts)
 - This is documented and acceptable; the mapping rules are atomic and can be prioritized during implementation
+- `test_integration.py` requires `test_cases.json` to be in the same directory (tools/validation/)
 
 ---
 
